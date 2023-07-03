@@ -10,11 +10,6 @@ import org.springframework.web.bind.annotation.*;
 import java.util.ArrayList;
 import java.util.List;
 
-class MongoRepositoryException extends RuntimeException {
-    public MongoRepositoryException(String message) {
-        super(message);
-    }
-}
 @RestController
 @RequestMapping("/product")
 public class ProductController {
@@ -28,7 +23,7 @@ public class ProductController {
 
     @GetMapping("/{id}")
     public Product getSingleProduct(@PathVariable("id") String id){
-       return productRepo.findById(id).orElseThrow(() -> new MongoRepositoryException("Entity Not found"));
+       return productRepo.findById(id).get();
     }
     @PostMapping("/")
     public String createProduct(@RequestBody Product prod){
