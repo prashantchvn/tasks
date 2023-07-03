@@ -1,24 +1,25 @@
 package com.example.practice.entities;
 
-import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.aggregation.ArrayOperators;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-@Document(collection = "Products")
-@EntityScan
+@Document("product")
 public class Product {
     @Id
     private String id;
-    private String productName;
+    private String name;
     private String description;
     private Integer price;
+    private String company;
+    private String sellerName;
 
-    public Product(String id, String productName, String description, Integer price) {
+    public Product(String id, String name, String description, Integer price, String company, String sellerName) {
         this.id = id;
-        this.productName = productName;
+        this.name = name;
         this.description = description;
         this.price = price;
+        this.company = company;
+        this.sellerName = sellerName;
     }
 
     public String getId() {
@@ -29,12 +30,12 @@ public class Product {
         this.id = id;
     }
 
-    public String getProductName() {
-        return productName;
+    public String getName() {
+        return name;
     }
 
-    public void setProductName(String productName) {
-        this.productName = productName;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getDescription() {
@@ -51,5 +52,21 @@ public class Product {
 
     public void setPrice(Integer price) {
         this.price = price;
+    }
+
+    public String getCompany() {
+        return company;
+    }
+
+    public void setCompany(String company) {
+        this.company = company;
+    }
+
+    public String getSellerName() {
+        return sellerName;
+    }
+
+    public void setSellerName(String sellerName) {
+        this.sellerName = sellerName;
     }
 }
