@@ -20,4 +20,9 @@ public class UserController {
     public ResponseEntity<String> registerUser(@RequestBody Users user){
         return userService.registerUser(user);
     }
+
+    @PostMapping("/login")
+    public ResponseEntity<String> loginUser(@RequestBody Users user){
+        return userService.loginUser(user);
+    }
 }
