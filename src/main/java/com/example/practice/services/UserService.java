@@ -2,6 +2,7 @@ package com.example.practice.services;
 
 import com.example.practice.entities.Users;
 import com.example.practice.repository.UserRepository;
+import com.example.practice.utilities.JwtUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -13,8 +14,10 @@ public class UserService {
     @Autowired
     private UserRepository userRepo;
     private PasswordEncoder passwordEncoder;
-    public UserService(PasswordEncoder passwordEncoder) {
+    private JwtUtils jwtUtils;
+    public UserService(PasswordEncoder passwordEncoder, JwtUtils jwtUtils) {
         this.passwordEncoder = passwordEncoder;
+        this.jwtUtils = jwtUtils;
     }
     public ResponseEntity<String> testApi(){
         return ResponseEntity.ok("Okay");
@@ -33,7 +36,8 @@ public class UserService {
             return ResponseEntity.notFound().build();
         }
         if(passwordEncoder.matches(user.getPassword(),matchedUser.getPassword())){
-            return ResponseEntity.ok("Login successfull");
+            String token = jwtUtils.generateToken(user.getEmail());
+            return ResponseEntity.ok(token);
         }else {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid Credentials");
         }
