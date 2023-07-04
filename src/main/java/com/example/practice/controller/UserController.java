@@ -22,7 +22,7 @@ public class UserController {
     }
 
     @PostMapping("/login")
-    public ResponseEntity<String> loginUser(@RequestBody Users user){
+    public ResponseEntity<Object> loginUser(@RequestBody Users user){
         return userService.loginUser(user);
     }
 }

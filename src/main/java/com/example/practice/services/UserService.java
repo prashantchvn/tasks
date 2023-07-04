@@ -30,16 +30,16 @@ public class UserService {
         return ResponseEntity.ok("User registered please login in using authentication");
     }
 
-    public ResponseEntity<String> loginUser(Users user){
+    public ResponseEntity<Object> loginUser(Users user){
         Users matchedUser = userRepo.findByEmail(user.getEmail());
         if(matchedUser == null){
             return ResponseEntity.notFound().build();
         }
         if(passwordEncoder.matches(user.getPassword(),matchedUser.getPassword())){
             String token = jwtUtils.generateToken(user.getEmail());
-            return ResponseEntity.ok(token);
+            return ResponseEntity.ok().body("{\"token:\" \"" + "Bearer " + token + "\" }");
         }else {
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid Credentials");
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("{\"message:\": \"Invalid Credentials\"}");
         }
     }
 
