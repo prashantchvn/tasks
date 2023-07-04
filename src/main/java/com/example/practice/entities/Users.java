@@ -1,5 +1,7 @@
 package com.example.practice.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.aggregation.ArrayOperators;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -45,6 +47,7 @@ public class Users {
     private String id;
     private String name;
     private Address address;
+    @JsonIgnore
     private String password;
     private String email;
     private Boolean isAdmin;
