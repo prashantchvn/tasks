@@ -43,5 +43,11 @@ public class UserService {
         }
     }
 
+    public Users getUserFromToken(String token){
+        String email = jwtUtils.getUsernameFromToken(token);
+        Users matchedUser = userRepo.findByEmail(email);
+        return matchedUser;
+    }
+
 
 }
