@@ -45,7 +45,6 @@ public class Users {
     private String id;
     private String name;
     private Address address;
-    @JsonIgnore
     private String password;
     private String email;
     private Boolean isAdmin;
@@ -84,7 +83,6 @@ public class Users {
     public void setAddress(Address address) {
         this.address = address;
     }
-
     public String getPassword() {
         return password;
     }
