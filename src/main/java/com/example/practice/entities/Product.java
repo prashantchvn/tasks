@@ -1,6 +1,7 @@
 package com.example.practice.entities;
 
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document("product")
@@ -11,15 +12,16 @@ public class Product {
     private String description;
     private Integer price;
     private String company;
-    private String sellerName;
+    @DBRef
+    private Users seller;
 
-    public Product(String id, String name, String description, Integer price, String company, String sellerName) {
+    public Product(String id, String name, String description, Integer price, String company, Users seller) {
         this.id = id;
         this.name = name;
         this.description = description;
         this.price = price;
         this.company = company;
-        this.sellerName = sellerName;
+        this.seller = seller;
     }
 
     public String getId() {
@@ -62,11 +64,11 @@ public class Product {
         this.company = company;
     }
 
-    public String getSellerName() {
-        return sellerName;
+    public Users getSeller() {
+        return seller;
     }
 
-    public void setSellerName(String sellerName) {
-        this.sellerName = sellerName;
+    public void setSeller(Users seller) {
+        this.seller = seller;
     }
 }
