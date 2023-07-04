@@ -1,6 +1,7 @@
 package com.example.practice.controller;
 
 import com.example.practice.entities.Users;
+import com.example.practice.interceptors.AuthTokenInterceptor;
 import com.example.practice.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -12,6 +13,12 @@ import org.springframework.web.bind.annotation.*;
 public class UserController {
     @Autowired
     UserService userService;
+    private final AuthTokenInterceptor authTokenInterceptor;
+
+    public UserController(AuthTokenInterceptor authTokenInterceptor) {
+        this.authTokenInterceptor = authTokenInterceptor;
+    }
+
     @GetMapping("/test")
     public ResponseEntity<String> testingApi(){
         return userService.testApi();
@@ -34,5 +41,10 @@ public class UserController {
         }else{
             return ResponseEntity.ok().body(matchedUser);
         }
+    }
+
+    @GetMapping("/admin")
+    public String checkAuthentication(){
+        return userService.checkAuthorizedUser();
     }
 }

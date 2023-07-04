@@ -15,10 +15,12 @@ public class UserService {
     private UserRepository userRepo;
     private PasswordEncoder passwordEncoder;
     private JwtUtils jwtUtils;
+
     public UserService(PasswordEncoder passwordEncoder, JwtUtils jwtUtils) {
         this.passwordEncoder = passwordEncoder;
         this.jwtUtils = jwtUtils;
     }
+
     public ResponseEntity<String> testApi(){
         return ResponseEntity.ok("Okay");
     }
@@ -49,5 +51,8 @@ public class UserService {
         return matchedUser;
     }
 
+    public String checkAuthorizedUser(){
+        return "Authorized User";
+    }
 
 }
