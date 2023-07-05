@@ -25,4 +25,9 @@ public class ProductController {
     public ResponseEntity<Object> showProducts(){
         return productService.viewAllProducts();
     }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<Object> getSingleProduct(@PathVariable("id") String id){
+        return productService.getSingleProduct(id);
+    }
 }

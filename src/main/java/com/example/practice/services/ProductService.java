@@ -37,4 +37,9 @@ public class ProductService {
         List<Product> productList = productRepo.findAll();
         return ResponseEntity.ok(productList);
     }
+
+    public ResponseEntity<Object> getSingleProduct(String id){
+        Product product = productRepo.findById(id).get();
+        return ResponseEntity.ok(product);
+    }
 }
