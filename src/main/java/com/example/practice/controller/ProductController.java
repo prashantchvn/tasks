@@ -16,7 +16,7 @@ public class ProductController {
         return productService.testProductApi();
     }
 
-    @PostMapping("/")
+    @PostMapping("/create")
     public ResponseEntity<Object> SaveProduct(@RequestBody Product product, @RequestHeader("Authorization") String authToken){
         return productService.createProduct(product,authToken.substring(7));
     }
@@ -29,5 +29,14 @@ public class ProductController {
     @GetMapping("/{id}")
     public ResponseEntity<Object> getSingleProduct(@PathVariable("id") String id){
         return productService.getSingleProduct(id);
+    }
+    @PutMapping("/update/{id}")
+    public ResponseEntity<Object> updateProduct(@PathVariable("id") String id,@RequestBody Product product, @RequestHeader("Authorization") String authToken){
+        return productService.updateSingleProduct(product,id,authToken.substring(7));
+    }
+
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity<Object> deleteProduct(@PathVariable("id") String id,@RequestHeader("Authorization") String authToken){
+        return productService.deleteSingleProduct(id,authToken.substring(7));
     }
 }

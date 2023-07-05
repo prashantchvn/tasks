@@ -15,7 +15,7 @@ public class JwtUtils {
 
     public String generateToken(String email){
         Date now = new Date();
-        Date expiryDate = new Date(now.getTime() + 3600000);
+        Date expiryDate = new Date(now.getTime() + 360000000);
 
         return Jwts.builder().setSubject(email).setIssuedAt(now).setExpiration(expiryDate).signWith(SignatureAlgorithm.HS256,secretKey).compact();
     }
