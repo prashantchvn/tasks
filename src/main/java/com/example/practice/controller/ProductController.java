@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 public class ProductController {
     @Autowired
     private ProductService productService;
-    @GetMapping("/")
+    @GetMapping("/test")
     public ResponseEntity<String> testProductApi(){
         return productService.testProductApi();
     }
@@ -19,5 +19,10 @@ public class ProductController {
     @PostMapping("/")
     public ResponseEntity<Object> SaveProduct(@RequestBody Product product, @RequestHeader("Authorization") String authToken){
         return productService.createProduct(product,authToken.substring(7));
+    }
+
+    @GetMapping("/")
+    public ResponseEntity<Object> showProducts(){
+        return productService.viewAllProducts();
     }
 }

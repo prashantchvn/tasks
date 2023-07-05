@@ -1,7 +1,7 @@
 package com.example.practice.entities;
 
+import com.example.practice.responseobjects.UserResObject;
 import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document("product")
@@ -12,10 +12,9 @@ public class Product {
     private String description;
     private Integer price;
     private String company;
-    @DBRef
-    private Users seller;
+    private UserResObject seller;
 
-    public Product(String id, String name, String description, Integer price, String company, Users seller) {
+    public Product(String id, String name, String description, Integer price, String company, UserResObject seller) {
         this.id = id;
         this.name = name;
         this.description = description;
@@ -64,11 +63,11 @@ public class Product {
         this.company = company;
     }
 
-    public Users getSeller() {
+    public UserResObject getSeller() {
         return seller;
     }
 
-    public void setSeller(Users seller) {
+    public void setSeller(UserResObject seller) {
         this.seller = seller;
     }
 }

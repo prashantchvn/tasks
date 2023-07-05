@@ -2,6 +2,7 @@ package com.example.practice.controller;
 
 import com.example.practice.entities.Users;
 import com.example.practice.interceptors.AuthTokenInterceptor;
+import com.example.practice.responseobjects.ValidateUserResObject;
 import com.example.practice.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -35,7 +36,7 @@ public class UserController {
     }
     @GetMapping("/")
     public ResponseEntity<Object> getUserFromToken(@RequestHeader("Authorization") String authToken){
-        Users matchedUser = userService.getUserFromToken(authToken.substring(7));
+        ValidateUserResObject matchedUser = userService.getUserFromToken(authToken.substring(7));
         if (matchedUser == null){
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("{\"message\":\"Invalid Auth token\"}");
         }else{

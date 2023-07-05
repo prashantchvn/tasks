@@ -2,6 +2,7 @@ package com.example.practice.services;
 
 import com.example.practice.entities.Users;
 import com.example.practice.repository.UserRepository;
+import com.example.practice.responseobjects.ValidateUserResObject;
 import com.example.practice.utilities.JwtUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -45,10 +46,11 @@ public class UserService {
         }
     }
 
-    public Users getUserFromToken(String token){
+    public ValidateUserResObject getUserFromToken(String token){
         String email = jwtUtils.getUsernameFromToken(token);
         Users matchedUser = userRepo.findByEmail(email);
-        return matchedUser;
+        ValidateUserResObject userResObject = new ValidateUserResObject(matchedUser.getId(),matchedUser.getName(),matchedUser.getEmail(),matchedUser.getAddress(),matchedUser.getAdmin(),matchedUser.getSeller());
+        return userResObject;
     }
 
     public String checkAuthorizedUser(){

@@ -1,26 +1,18 @@
-package com.example.practice.entities;
+package com.example.practice.responseobjects;
 
-import com.example.practice.responseobjects.Address;
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
-
-@Document("Users")
-public class Users {
-    @Id
+public class ValidateUserResObject {
     private String id;
     private String name;
-    private Address address;
-    private String password;
     private String email;
+    private Address address;
     private Boolean isAdmin;
     private Boolean isSeller;
 
-    public Users(String id, String name, Address address, String password, String email, Boolean isAdmin, Boolean isSeller) {
+    public ValidateUserResObject(String id, String name, String email, Address address, Boolean isAdmin, Boolean isSeller) {
         this.id = id;
         this.name = name;
-        this.address = address;
-        this.password = password;
         this.email = email;
+        this.address = address;
         this.isAdmin = isAdmin;
         this.isSeller = isSeller;
     }
@@ -41,27 +33,20 @@ public class Users {
         this.name = name;
     }
 
-    public Address getAddress() {
-        return address;
-    }
-
-    public void setAddress(Address address) {
-        this.address = address;
-    }
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
     public String getEmail() {
         return email;
     }
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public Address getAddress() {
+        return address;
+    }
+
+    public void setAddress(Address address) {
+        this.address = address;
     }
 
     public Boolean getAdmin() {
